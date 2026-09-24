@@ -1,0 +1,269 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TPAO | Welcome</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            color: #222;
+            background: #ffffff;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: #111827;
+            color: white;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        nav a:hover {
+            color: #60a5fa;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #111827, #2563eb);
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 21px;
+            max-width: 650px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 14px 30px;
+            background: white;
+            color: #2563eb;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .button:hover {
+            background: #e5e7eb;
+        }
+
+        /* Sections */
+        section {
+            padding: 70px 8%;
+            text-align: center;
+        }
+
+        section h2 {
+            font-size: 35px;
+            margin-bottom: 20px;
+        }
+
+        section p {
+            max-width: 700px;
+            margin: auto;
+            line-height: 1.7;
+            color: #555;
+        }
+
+        /* Services */
+        .services {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .card {
+            width: 280px;
+            padding: 30px;
+            background: #f3f4f6;
+            border-radius: 12px;
+        }
+
+        .card h3 {
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+
+        /* Contact */
+        .contact {
+            background: #f3f4f6;
+        }
+
+        .contact a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        /* Footer */
+        footer {
+            background: #111827;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        /* Mobile */
+        @media (max-width: 700px) {
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav ul {
+                gap: 15px;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">TPAO</div>
+
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+
+    <!-- Home -->
+    <section class="hero" id="home">
+        <h1>Welcome to TPAO</h1>
+
+        <p>
+            Building ideas, creating opportunities, and delivering
+            solutions that make a difference.
+        </p>
+
+        <a href="#contact" class="button">Contact Us</a>
+    </section>
+
+
+    <!-- About -->
+    <section id="about">
+        <h2>About TPAO</h2>
+
+        <p>
+            TPAO is dedicated to providing quality services and creating
+            meaningful experiences for our customers. Learn more about
+            what we do and how we can help you.
+        </p>
+    </section>
+
+
+    <!-- Services -->
+    <section id="services">
+        <h2>Our Services</h2>
+
+        <div class="services">
+
+            <div class="card">
+                <h3>Service One</h3>
+                <p>
+                    Describe your first service or product here.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Service Two</h3>
+                <p>
+                    Describe your second service or product here.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Service Three</h3>
+                <p>
+                    Describe your third service or product here.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- Contact -->
+    <section class="contact" id="contact">
+        <h2>Contact Us</h2>
+
+        <p>
+            Ready to work with TPAO? Get in touch with us today.
+        </p>
+
+        <br>
+
+        <p>
+            Email:
+            <a href="mailto:your@email.com">
+                your@email.com
+            </a>
+        </p>
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 TPAO. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
+```
