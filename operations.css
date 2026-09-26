@@ -1,0 +1,709 @@
+```css
+/* =================================
+   TPAO OPERATIONS PAGE
+================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #ffffff;
+    color: #172033;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+/* =================================
+   NAVIGATION
+================================= */
+
+.navbar {
+    height: 80px;
+    padding: 0 8%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: #07111f;
+    color: white;
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+}
+
+.nav-links a {
+    color: white;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: #d9a441;
+}
+
+.menu-button {
+    display: none;
+
+    background: transparent;
+    border: none;
+
+    color: white;
+    font-size: 28px;
+
+    cursor: pointer;
+}
+
+
+/* =================================
+   HERO
+================================= */
+
+.operations-hero {
+    min-height: 620px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 90px 8%;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(3, 12, 24, 0.96),
+            rgba(3, 12, 24, 0.72),
+            rgba(3, 12, 24, 0.35)
+        ),
+        linear-gradient(
+            135deg,
+            #07111f,
+            #164568
+        );
+}
+
+.hero-content {
+    max-width: 850px;
+}
+
+.hero-content span,
+.operation-content > span,
+.offshore-content > span,
+.section-heading span,
+.operations-cta span {
+    color: #d9a441;
+
+    font-size: 13px;
+    font-weight: bold;
+
+    letter-spacing: 3px;
+}
+
+.hero-content h1 {
+    font-size: clamp(52px, 8vw, 90px);
+    line-height: 1.02;
+
+    margin: 20px 0;
+}
+
+.hero-content p {
+    max-width: 700px;
+
+    font-size: 19px;
+
+    color: #d9e0e8;
+}
+
+
+/* =================================
+   INTRODUCTION
+================================= */
+
+.operations-intro {
+    padding: 110px 8%;
+}
+
+.section-label {
+    color: #d9a441;
+
+    font-size: 13px;
+    font-weight: bold;
+
+    letter-spacing: 3px;
+}
+
+.intro-grid {
+    margin-top: 45px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    gap: 80px;
+}
+
+.intro-grid h2 {
+    font-size: 48px;
+    line-height: 1.15;
+}
+
+.intro-grid p {
+    color: #5c6875;
+
+    font-size: 17px;
+
+    margin-bottom: 25px;
+}
+
+
+/* =================================
+   OPERATION SECTIONS
+================================= */
+
+.operation-section {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    min-height: 600px;
+}
+
+.operation-section.reverse {
+    direction: rtl;
+}
+
+.operation-section.reverse .operation-content {
+    direction: ltr;
+}
+
+.operation-image {
+    min-height: 600px;
+
+    position: relative;
+
+    background-size: cover;
+    background-position: center;
+}
+
+
+/*
+    You can replace these backgrounds
+    with real TPAO photographs later.
+*/
+
+.exploration-image {
+    background:
+        linear-gradient(
+            rgba(4, 18, 31, 0.25),
+            rgba(4, 18, 31, 0.45)
+        ),
+        linear-gradient(
+            135deg,
+            #34576b,
+            #132a3d
+        );
+}
+
+.drilling-image {
+    background:
+        linear-gradient(
+            rgba(4, 18, 31, 0.25),
+            rgba(4, 18, 31, 0.5)
+        ),
+        linear-gradient(
+            135deg,
+            #687579,
+            #172a35
+        );
+}
+
+.production-image {
+    background:
+        linear-gradient(
+            rgba(4, 18, 31, 0.2),
+            rgba(4, 18, 31, 0.5)
+        ),
+        linear-gradient(
+            135deg,
+            #6a573d,
+            #192a32
+        );
+}
+
+.image-overlay {
+    position: absolute;
+
+    bottom: 40px;
+    left: 40px;
+
+    font-size: 80px;
+    font-weight: bold;
+
+    color: rgba(255,255,255,0.85);
+}
+
+.operation-content {
+    padding: 90px 10%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.operation-content h2 {
+    font-size: 48px;
+    line-height: 1.1;
+
+    margin: 18px 0 25px;
+}
+
+.operation-content p {
+    color: #5c6875;
+
+    max-width: 600px;
+
+    margin-bottom: 20px;
+}
+
+.operation-content ul {
+    list-style: none;
+
+    margin-top: 15px;
+}
+
+.operation-content li {
+    padding: 12px 0;
+
+    border-bottom: 1px solid #e3e7eb;
+
+    color: #273442;
+
+    font-weight: 600;
+}
+
+.operation-content li::before {
+    content: "→";
+
+    color: #d9a441;
+
+    margin-right: 12px;
+}
+
+
+/* =================================
+   OFFSHORE
+================================= */
+
+.offshore {
+    min-height: 560px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 90px 8%;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(4, 16, 29, 0.95),
+            rgba(4, 16, 29, 0.7)
+        ),
+        linear-gradient(
+            135deg,
+            #164a69,
+            #07111f
+        );
+}
+
+.offshore-content {
+    max-width: 750px;
+}
+
+.offshore-content h2 {
+    font-size: 55px;
+    line-height: 1.1;
+
+    margin: 20px 0;
+}
+
+.offshore-content p {
+    max-width: 650px;
+
+    color: #d4dce5;
+
+    font-size: 17px;
+
+    margin-bottom: 30px;
+}
+
+.button {
+    display: inline-block;
+
+    padding: 15px 28px;
+
+    background: #d9a441;
+    color: #07111f;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+.button:hover {
+    background: white;
+    transform: translateY(-3px);
+}
+
+
+/* =================================
+   PRINCIPLES
+================================= */
+
+.principles {
+    padding: 110px 8%;
+}
+
+.section-heading {
+    max-width: 700px;
+}
+
+.section-heading h2 {
+    font-size: 50px;
+    line-height: 1.1;
+
+    margin-top: 15px;
+}
+
+.principles-grid {
+    margin-top: 60px;
+
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 20px;
+}
+
+.principle-card {
+    padding: 35px;
+
+    border: 1px solid #e0e5ea;
+
+    transition: 0.3s;
+}
+
+.principle-card:hover {
+    transform: translateY(-7px);
+
+    border-color: #d9a441;
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,0.07);
+}
+
+.principle-card .number {
+    color: #d9a441;
+
+    font-weight: bold;
+
+    letter-spacing: 2px;
+}
+
+.principle-card h3 {
+    font-size: 24px;
+
+    margin: 25px 0 15px;
+}
+
+.principle-card p {
+    color: #637080;
+}
+
+
+/* =================================
+   CTA
+================================= */
+
+.operations-cta {
+    padding: 120px 8%;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #123b58,
+            #07111f
+        );
+}
+
+.operations-cta h2 {
+    font-size: 55px;
+
+    line-height: 1.1;
+
+    margin: 20px 0;
+}
+
+.operations-cta p {
+    max-width: 600px;
+
+    color: #d0d8e0;
+
+    margin-bottom: 30px;
+}
+
+.cta-button {
+    display: inline-block;
+
+    padding: 15px 28px;
+
+    background: #d9a441;
+    color: #07111f;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+.cta-button:hover {
+    background: white;
+}
+
+
+/* =================================
+   FOOTER
+================================= */
+
+footer {
+    padding: 60px 8%;
+
+    background: #030a12;
+
+    color: white;
+
+    text-align: center;
+}
+
+.footer-logo {
+    font-size: 32px;
+
+    font-weight: bold;
+
+    letter-spacing: 3px;
+}
+
+footer > p {
+    color: #9ba5b1;
+
+    margin: 10px 0 25px;
+}
+
+.footer-links {
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 25px;
+}
+
+.footer-links a {
+    color: #d7dce2;
+
+    transition: 0.3s;
+}
+
+.footer-links a:hover {
+    color: #d9a441;
+}
+
+footer hr {
+    margin: 35px 0 25px;
+
+    border: none;
+
+    border-top: 1px solid #1d2935;
+}
+
+footer .copyright {
+    font-size: 13px;
+}
+
+
+/* =================================
+   ANIMATIONS
+================================= */
+
+.reveal {
+    opacity: 0;
+
+    transform: translateY(35px);
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+
+/* =================================
+   TABLET
+================================= */
+
+@media (max-width: 950px) {
+
+    .nav-links {
+        gap: 15px;
+    }
+
+    .intro-grid {
+        grid-template-columns: 1fr;
+
+        gap: 35px;
+    }
+
+    .operation-section {
+        grid-template-columns: 1fr;
+    }
+
+    .operation-section.reverse {
+        direction: ltr;
+    }
+
+    .operation-image {
+        min-height: 450px;
+    }
+
+    .principles-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 650px) {
+
+    .navbar {
+        padding: 0 5%;
+    }
+
+    .menu-button {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+
+        position: absolute;
+
+        top: 80px;
+        left: 0;
+
+        width: 100%;
+
+        padding: 25px;
+
+        background: #07111f;
+
+        flex-direction: column;
+
+        align-items: center;
+    }
+
+    .nav-links.show {
+        display: flex;
+    }
+
+    .operations-hero {
+        min-height: 520px;
+
+        padding: 70px 5%;
+    }
+
+    .operations-intro,
+    .principles {
+        padding: 75px 5%;
+    }
+
+    .intro-grid h2,
+    .section-heading h2 {
+        font-size: 38px;
+    }
+
+    .operation-image {
+        min-height: 350px;
+    }
+
+    .operation-content {
+        padding: 70px 5%;
+    }
+
+    .operation-content h2 {
+        font-size: 38px;
+    }
+
+    .offshore {
+        padding: 80px 5%;
+    }
+
+    .offshore-content h2 {
+        font-size: 40px;
+    }
+
+    .principles-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .operations-cta {
+        padding: 80px 5%;
+    }
+
+    .operations-cta h2 {
+        font-size: 40px;
+    }
+
+    footer {
+        padding: 50px 5%;
+    }
+
+}
+```
