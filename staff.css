@@ -650,3 +650,43 @@ footer .copyright {
     }
 
 }
+
+/* =========================
+   STAFF IMAGE FIX
+========================= */
+
+.staff-image {
+    width: 100%;
+    height: 360px;
+    overflow: hidden;
+    position: relative;
+    background: #e9e9e9;
+}
+
+.staff-image img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center top;
+}
+
+.person-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+
+    .staff-image {
+        height: 320px;
+    }
+
+}
