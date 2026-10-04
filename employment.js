@@ -4,6 +4,24 @@
 
 
 // =================================
+// EMAILJS CONFIGURATION
+// =================================
+
+// Replace these 3 values with the values
+// from your EmailJS account.
+
+const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY";
+const EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID";
+const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";
+
+
+// Initialize EmailJS
+emailjs.init({
+    publicKey: EMAILJS_PUBLIC_KEY
+});
+
+
+// =================================
 // MOBILE NAVIGATION
 // =================================
 
@@ -43,13 +61,14 @@ navigationLinks.forEach(function (link) {
         "click",
         function () {
 
-            navLinks.classList.remove("show");
+            if (navLinks) {
+                navLinks.classList.remove("show");
+            }
 
         }
     );
 
 });
-
 
 
 // =================================
@@ -107,6 +126,41 @@ applyButtons.forEach(function (button) {
 });
 
 
+// =================================
+// CV FILE NAME DISPLAY
+// =================================
+
+const cvInput =
+    document.getElementById("cv");
+
+const cvFileName =
+    document.getElementById("cvFileName");
+
+
+if (cvInput) {
+
+    cvInput.addEventListener(
+        "change",
+        function () {
+
+            if (cvInput.files.length > 0) {
+
+                cvFileName.textContent =
+                    "Selected CV: " +
+                    cvInput.files[0].name;
+
+            } else {
+
+                cvFileName.textContent =
+                    "No CV selected.";
+
+            }
+
+        }
+    );
+
+}
+
 
 // =================================
 // APPLICATION FORM
@@ -150,6 +204,16 @@ if (employmentForm) {
                 ).value.trim();
 
 
+            const cv =
+                document.getElementById(
+                    "cv"
+                );
+
+
+            // -----------------------------
+            // Required field validation
+            // -----------------------------
+
             if (
                 fullName === "" ||
                 email === "" ||
@@ -167,31 +231,187 @@ if (employmentForm) {
             }
 
 
-            /*
-                GitHub Pages is static hosting.
-                This demo does not actually send
-                an application to TPAO.
+            // -----------------------------
+            // CV validation
+            // -----------------------------
 
-                A form service or backend is required
-                to receive applications.
-            */
+            if (
+                !cv ||
+                cv.files.length === 0
+            ) {
+
+                formMessage.textContent =
+                    "Please upload your CV before submitting.";
+
+                formMessage.style.color =
+                    "#c0392b";
+
+                return;
+
+            }
+
+
+            const selectedFile =
+                cv.files[0];
+
+
+            // Allowed file types
+            const allowedTypes = [
+                "application/pdf",
+                "image/jpeg",
+                "image/png"
+            ];
+
+
+            if (
+                !allowedTypes.includes(
+                    selectedFile.type
+                )
+            ) {
+
+                formMessage.textContent =
+                    "Please upload your CV as PDF, JPG, or PNG.";
+
+                formMessage.style.color =
+                    "#c0392b";
+
+                return;
+
+            }
+
+
+            // Maximum file size: 5 MB
+            const maximumSize =
+                5 * 1024 * 1024;
+
+
+            if (
+                selectedFile.size >
+                maximumSize
+            ) {
+
+                formMessage.textContent =
+                    "Your CV must be 5 MB or smaller.";
+
+                formMessage.style.color =
+                    "#c0392b";
+
+                return;
+
+            }
+
+
+            // -----------------------------
+            // Prevent duplicate submission
+            // -----------------------------
+
+            const submitButton =
+                employmentForm.querySelector(
+                    'button[type="submit"]'
+                );
+
+
+            if (submitButton) {
+
+                submitButton.disabled =
+                    true;
+
+                submitButton.textContent =
+                    "Submitting...";
+
+            }
+
 
             formMessage.textContent =
-                "Thank you, " +
-                fullName +
-                ". Your employment enquiry has been prepared successfully.";
+                "Sending your application...";
 
             formMessage.style.color =
-                "#16804a";
+                "#555";
 
 
-            employmentForm.reset();
+            // -----------------------------
+            // Send application through EmailJS
+            // -----------------------------
+
+            emailjs.sendForm(
+                EMAILJS_SERVICE_ID,
+                EMAILJS_TEMPLATE_ID,
+                employmentForm
+            )
+
+            .then(
+                function (response) {
+
+                    console.log(
+                        "Application sent successfully:",
+                        response
+                    );
+
+
+                    formMessage.textContent =
+                        "Thank you, " +
+                        fullName +
+                        ". Your application and CV have been submitted successfully.";
+
+                    formMessage.style.color =
+                        "#16804a";
+
+
+                    employmentForm.reset();
+
+
+                    if (cvFileName) {
+
+                        cvFileName.textContent =
+                            "No CV selected.";
+
+                    }
+
+
+                    if (submitButton) {
+
+                        submitButton.disabled =
+                            false;
+
+                        submitButton.textContent =
+                            "Submit Application";
+
+                    }
+
+                },
+
+                function (error) {
+
+                    console.error(
+                        "EmailJS submission error:",
+                        error
+                    );
+
+
+                    formMessage.textContent =
+                        "We could not submit your application. Please try again.";
+
+                    formMessage.style.color =
+                        "#c0392b";
+
+
+                    if (submitButton) {
+
+                        submitButton.disabled =
+                            false;
+
+                        submitButton.textContent =
+                            "Submit Application";
+
+                    }
+
+                }
+            );
 
         }
     );
 
 }
-
 
 
 // =================================
@@ -254,7 +474,6 @@ revealElements.forEach(
 
     }
 );
-
 
 
 // =================================
