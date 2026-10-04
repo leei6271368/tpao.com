@@ -4,24 +4,6 @@
 
 
 // =================================
-// EMAILJS CONFIGURATION
-// =================================
-
-// Replace these 3 values with the values
-// from your EmailJS account.
-
-const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY";
-const EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID";
-const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";
-
-
-// Initialize EmailJS
-emailjs.init({
-    publicKey: EMAILJS_PUBLIC_KEY
-});
-
-
-// =================================
 // MOBILE NAVIGATION
 // =================================
 
@@ -181,7 +163,7 @@ if (employmentForm) {
 
     employmentForm.addEventListener(
         "submit",
-        function (event) {
+        async function (event) {
 
             event.preventDefault();
 
@@ -256,6 +238,7 @@ if (employmentForm) {
 
 
             // Allowed file types
+
             const allowedTypes = [
                 "application/pdf",
                 "image/jpeg",
@@ -281,6 +264,7 @@ if (employmentForm) {
 
 
             // Maximum file size: 5 MB
+
             const maximumSize =
                 5 * 1024 * 1024;
 
@@ -330,83 +314,120 @@ if (employmentForm) {
 
 
             // -----------------------------
-            // Send application through EmailJS
+            // Send application through
+            // FormSubmit
             // -----------------------------
 
-            emailjs.sendForm(
-                EMAILJS_SERVICE_ID,
-                EMAILJS_TEMPLATE_ID,
-                employmentForm
-            )
+            try {
 
-            .then(
-                function (response) {
-
-                    console.log(
-                        "Application sent successfully:",
-                        response
+                const formData =
+                    new FormData(
+                        employmentForm
                     );
 
 
-                    formMessage.textContent =
-                        "Thank you, " +
-                        fullName +
-                        ". Your application and CV have been submitted successfully.";
+                // Add timestamp for FormSubmit
+                // spam protection
 
-                    formMessage.style.color =
-                        "#16804a";
-
-
-                    employmentForm.reset();
+                formData.set(
+                    "_ts",
+                    String(Date.now())
+                );
 
 
-                    if (cvFileName) {
-
-                        cvFileName.textContent =
-                            "No CV selected.";
-
-                    }
-
-
-                    if (submitButton) {
-
-                        submitButton.disabled =
-                            false;
-
-                        submitButton.textContent =
-                            "Submit Application";
-
-                    }
-
-                },
-
-                function (error) {
-
-                    console.error(
-                        "EmailJS submission error:",
-                        error
+                const response =
+                    await fetch(
+                        employmentForm.action,
+                        {
+                            method: "POST",
+                            body: formData,
+                            headers: {
+                                "Accept": "application/json"
+                            }
+                        }
                     );
 
 
-                    formMessage.textContent =
-                        "We could not submit your application. Please try again.";
-
-                    formMessage.style.color =
-                        "#c0392b";
+                const result =
+                    await response.json();
 
 
-                    if (submitButton) {
+                if (
+                    !response.ok ||
+                    !result.ok
+                ) {
 
-                        submitButton.disabled =
-                            false;
-
-                        submitButton.textContent =
-                            "Submit Application";
-
-                    }
+                    throw new Error(
+                        result.error?.message ||
+                        "Unable to submit application."
+                    );
 
                 }
-            );
+
+
+                // -----------------------------
+                // SUCCESS
+                // -----------------------------
+
+                formMessage.textContent =
+                    "Thank you, " +
+                    fullName +
+                    ". Your application and CV have been submitted successfully.";
+
+                formMessage.style.color =
+                    "#16804a";
+
+
+                employmentForm.reset();
+
+
+                if (cvFileName) {
+
+                    cvFileName.textContent =
+                        "No CV selected.";
+
+                }
+
+
+                if (submitButton) {
+
+                    submitButton.disabled =
+                        false;
+
+                    submitButton.textContent =
+                        "Submit Enquiry →";
+
+                }
+
+            }
+
+
+            catch (error) {
+
+                console.error(
+                    "FormSubmit submission error:",
+                    error
+                );
+
+
+                formMessage.textContent =
+                    "We could not submit your application. Please try again.";
+
+                formMessage.style.color =
+                    "#c0392b";
+
+
+                if (submitButton) {
+
+                    submitButton.disabled =
+                        false;
+
+                    submitButton.textContent =
+                        "Submit Enquiry →";
+
+                }
+
+            }
 
         }
     );
