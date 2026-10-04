@@ -7,49 +7,24 @@
 // MOBILE NAVIGATION
 // =================================
 
-const menuButton =
-    document.getElementById("menuButton");
-
-const navLinks =
-    document.getElementById("navLinks");
-
+const menuButton = document.getElementById("menuButton");
+const navLinks = document.getElementById("navLinks");
 
 if (menuButton && navLinks) {
-
-    menuButton.addEventListener(
-        "click",
-        function () {
-
-            navLinks.classList.toggle("show");
-
-        }
-    );
-
+    menuButton.addEventListener("click", function () {
+        navLinks.classList.toggle("show");
+    });
 }
 
 
-// Close mobile menu
-// when a link is clicked
-
-const navigationLinks =
-    document.querySelectorAll(
-        ".nav-links a"
-    );
-
+const navigationLinks = document.querySelectorAll(".nav-links a");
 
 navigationLinks.forEach(function (link) {
-
-    link.addEventListener(
-        "click",
-        function () {
-
-            if (navLinks) {
-                navLinks.classList.remove("show");
-            }
-
+    link.addEventListener("click", function () {
+        if (navLinks) {
+            navLinks.classList.remove("show");
         }
-    );
-
+    });
 });
 
 
@@ -57,53 +32,28 @@ navigationLinks.forEach(function (link) {
 // APPLY BUTTONS
 // =================================
 
-const applyButtons =
-    document.querySelectorAll(
-        ".apply-button"
-    );
-
-const positionInput =
-    document.getElementById(
-        "position"
-    );
-
+const applyButtons = document.querySelectorAll(".apply-button");
+const positionInput = document.getElementById("position");
 
 applyButtons.forEach(function (button) {
 
-    button.addEventListener(
-        "click",
-        function () {
+    button.addEventListener("click", function () {
 
-            const job =
-                button.getAttribute(
-                    "data-job"
-                );
+        const job = button.getAttribute("data-job");
 
-
-            if (positionInput) {
-
-                positionInput.value =
-                    job;
-
-            }
-
-
-            const application =
-                document.querySelector(
-                    ".application"
-                );
-
-
-            if (application) {
-
-                application.scrollIntoView({
-                    behavior: "smooth"
-                });
-
-            }
-
+        if (positionInput) {
+            positionInput.value = job;
         }
-    );
+
+        const application = document.querySelector(".application");
+
+        if (application) {
+            application.scrollIntoView({
+                behavior: "smooth"
+            });
+        }
+
+    });
 
 });
 
@@ -112,34 +62,26 @@ applyButtons.forEach(function (button) {
 // CV FILE NAME DISPLAY
 // =================================
 
-const cvInput =
-    document.getElementById("cv");
-
-const cvFileName =
-    document.getElementById("cvFileName");
-
+const cvInput = document.getElementById("cv");
+const cvFileName = document.getElementById("cvFileName");
 
 if (cvInput) {
 
-    cvInput.addEventListener(
-        "change",
-        function () {
+    cvInput.addEventListener("change", function () {
 
-            if (cvInput.files.length > 0) {
+        if (cvInput.files.length > 0) {
 
-                cvFileName.textContent =
-                    "Selected CV: " +
-                    cvInput.files[0].name;
+            cvFileName.textContent =
+                "Selected CV: " + cvInput.files[0].name;
 
-            } else {
+        } else {
 
-                cvFileName.textContent =
-                    "No CV selected.";
-
-            }
+            cvFileName.textContent =
+                "No CV selected.";
 
         }
-    );
+
+    });
 
 }
 
@@ -149,288 +91,99 @@ if (cvInput) {
 // =================================
 
 const employmentForm =
-    document.getElementById(
-        "employmentForm"
-    );
+    document.getElementById("employmentForm");
 
 const formMessage =
-    document.getElementById(
-        "formMessage"
-    );
+    document.getElementById("formMessage");
 
 
 if (employmentForm) {
 
-    employmentForm.addEventListener(
-        "submit",
-        async function (event) {
+    employmentForm.addEventListener("submit", function (event) {
+
+        const cv = document.getElementById("cv");
+
+        if (!cv || cv.files.length === 0) {
 
             event.preventDefault();
 
-
-            const fullName =
-                document.getElementById(
-                    "fullName"
-                ).value.trim();
-
-
-            const email =
-                document.getElementById(
-                    "email"
-                ).value.trim();
-
-
-            const position =
-                document.getElementById(
-                    "position"
-                ).value.trim();
-
-
-            const cv =
-                document.getElementById(
-                    "cv"
-                );
-
-
-            // -----------------------------
-            // Required field validation
-            // -----------------------------
-
-            if (
-                fullName === "" ||
-                email === "" ||
-                position === ""
-            ) {
-
-                formMessage.textContent =
-                    "Please complete all required fields.";
-
-                formMessage.style.color =
-                    "#c0392b";
-
-                return;
-
-            }
-
-
-            // -----------------------------
-            // CV validation
-            // -----------------------------
-
-            if (
-                !cv ||
-                cv.files.length === 0
-            ) {
-
+            if (formMessage) {
                 formMessage.textContent =
                     "Please upload your CV before submitting.";
 
                 formMessage.style.color =
                     "#c0392b";
-
-                return;
-
             }
 
-
-            const selectedFile =
-                cv.files[0];
-
-
-            // Allowed file types
-
-            const allowedTypes = [
-                "application/pdf",
-                "image/jpeg",
-                "image/png"
-            ];
+            return;
+        }
 
 
-            if (
-                !allowedTypes.includes(
-                    selectedFile.type
-                )
-            ) {
+        const selectedFile = cv.files[0];
 
+
+        const allowedTypes = [
+            "application/pdf",
+            "image/jpeg",
+            "image/png"
+        ];
+
+
+        if (!allowedTypes.includes(selectedFile.type)) {
+
+            event.preventDefault();
+
+            if (formMessage) {
                 formMessage.textContent =
                     "Please upload your CV as PDF, JPG, or PNG.";
 
                 formMessage.style.color =
                     "#c0392b";
-
-                return;
-
             }
 
-
-            // Maximum file size: 5 MB
-
-            const maximumSize =
-                5 * 1024 * 1024;
+            return;
+        }
 
 
-            if (
-                selectedFile.size >
-                maximumSize
-            ) {
+        const maximumSize =
+            5 * 1024 * 1024;
 
+
+        if (selectedFile.size > maximumSize) {
+
+            event.preventDefault();
+
+            if (formMessage) {
                 formMessage.textContent =
                     "Your CV must be 5 MB or smaller.";
 
                 formMessage.style.color =
                     "#c0392b";
-
-                return;
-
             }
 
-
-            // -----------------------------
-            // Prevent duplicate submission
-            // -----------------------------
-
-            const submitButton =
-                employmentForm.querySelector(
-                    'button[type="submit"]'
-                );
+            return;
+        }
 
 
-            if (submitButton) {
+        // Let the browser submit the form
+        // directly to FormSubmit.
 
-                submitButton.disabled =
-                    true;
-
-                submitButton.textContent =
-                    "Submitting...";
-
-            }
+        const submitButton =
+            employmentForm.querySelector(
+                'button[type="submit"]'
+            );
 
 
-            formMessage.textContent =
-                "Sending your application...";
+        if (submitButton) {
 
-            formMessage.style.color =
-                "#555";
+            submitButton.disabled = true;
 
-
-            // -----------------------------
-            // Send application through
-            // FormSubmit
-            // -----------------------------
-
-            try {
-
-                const formData =
-                    new FormData(
-                        employmentForm
-                    );
-
-
-                // Add timestamp for FormSubmit
-                // spam protection
-
-                formData.set(
-                    "_ts",
-                    String(Date.now())
-                );
-
-
-                const response =
-                    await fetch(
-                        employmentForm.action,
-                        {
-                            method: "POST",
-                            body: formData,
-                            headers: {
-                                "Accept": "application/json"
-                            }
-                        }
-                    );
-
-
-                const result =
-                    await response.json();
-
-
-                if (
-                    !response.ok ||
-                    !result.ok
-                ) {
-
-                    throw new Error(
-                        result.error?.message ||
-                        "Unable to submit application."
-                    );
-
-                }
-
-
-                // -----------------------------
-                // SUCCESS
-                // -----------------------------
-
-                formMessage.textContent =
-                    "Thank you, " +
-                    fullName +
-                    ". Your application and CV have been submitted successfully.";
-
-                formMessage.style.color =
-                    "#16804a";
-
-
-                employmentForm.reset();
-
-
-                if (cvFileName) {
-
-                    cvFileName.textContent =
-                        "No CV selected.";
-
-                }
-
-
-                if (submitButton) {
-
-                    submitButton.disabled =
-                        false;
-
-                    submitButton.textContent =
-                        "Submit Enquiry →";
-
-                }
-
-            }
-
-
-            catch (error) {
-
-                console.error(
-                    "FormSubmit submission error:",
-                    error
-                );
-
-
-                formMessage.textContent =
-                    "We could not submit your application. Please try again.";
-
-                formMessage.style.color =
-                    "#c0392b";
-
-
-                if (submitButton) {
-
-                    submitButton.disabled =
-                        false;
-
-                    submitButton.textContent =
-                        "Submit Enquiry →";
-
-                }
-
-            }
+            submitButton.textContent =
+                "Submitting...";
 
         }
-    );
+
+    });
 
 }
 
@@ -458,9 +211,7 @@ const observer =
             entries.forEach(
                 function (entry) {
 
-                    if (
-                        entry.isIntersecting
-                    ) {
+                    if (entry.isIntersecting) {
 
                         entry.target.classList.add(
                             "visible"
@@ -485,13 +236,9 @@ const observer =
 revealElements.forEach(
     function (element) {
 
-        element.classList.add(
-            "reveal"
-        );
+        element.classList.add("reveal");
 
-        observer.observe(
-            element
-        );
+        observer.observe(element);
 
     }
 );
