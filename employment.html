@@ -1,13 +1,24 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+<!DOCTYPE html>
+<html lang="en">
 
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+<head>
 
-<title>Employment | TPAO</title>
+    <meta charset="UTF-8">
 
-<link rel="stylesheet" href="employment.css">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-</head><body><!-- =========================
+    <title>Employment | TPAO</title>
+
+    <link rel="stylesheet" href="employment.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
      NAVIGATION
 ========================== -->
 
@@ -1072,7 +1083,7 @@
                 </p>
 
                 <strong class="job-salary">
-                    Salary: $2,4000 / Month
+                    Salary: $2,400 / Month
                 </strong>
 
             </div>
@@ -1193,7 +1204,11 @@
             </h3>
 
 
-            <form id="employmentForm">
+            <form id="employmentForm"
+                  enctype="multipart/form-data">
+
+
+                <!-- FULL NAME -->
 
                 <div class="form-group">
 
@@ -1204,11 +1219,15 @@
                     <input
                         type="text"
                         id="fullName"
+                        name="fullName"
                         required
                         placeholder="Your full name">
 
                 </div>
 
+
+
+                <!-- EMAIL -->
 
                 <div class="form-group">
 
@@ -1219,11 +1238,15 @@
                     <input
                         type="email"
                         id="email"
+                        name="email"
                         required
                         placeholder="your@email.com">
 
                 </div>
 
+
+
+                <!-- POSITION -->
 
                 <div class="form-group">
 
@@ -1234,11 +1257,15 @@
                     <input
                         type="text"
                         id="position"
+                        name="position"
                         required
                         placeholder="Position you're applying for">
 
                 </div>
 
+
+
+                <!-- MESSAGE -->
 
                 <div class="form-group">
 
@@ -1248,11 +1275,55 @@
 
                     <textarea
                         id="message"
+                        name="message"
                         rows="5"
                         placeholder="Tell us about your experience..."></textarea>
 
                 </div>
 
+
+
+                <!-- CV UPLOAD -->
+
+                <div class="form-group cv-upload-group">
+
+                    <label for="cv">
+                        Upload CV
+                        <span>*</span>
+                    </label>
+
+
+                    <label for="cv"
+                           class="cv-upload-button">
+
+                        📎 Choose CV File
+
+                    </label>
+
+
+                    <input
+                        type="file"
+                        id="cv"
+                        name="cv"
+                        accept=".pdf,.jpg,.jpeg,.png"
+                        required>
+
+
+                    <p id="cvFileName">
+                        No CV selected.
+                    </p>
+
+
+                    <small>
+                        Accepted formats: PDF, JPG, JPEG, PNG.
+                        Maximum size: 5 MB.
+                    </small>
+
+                </div>
+
+
+
+                <!-- SUBMIT BUTTON -->
 
                 <button
                     type="submit"
@@ -1263,9 +1334,13 @@
                 </button>
 
 
+
+                <!-- FORM STATUS -->
+
                 <p id="formMessage"
                    class="form-message">
                 </p>
+
 
             </form>
 
@@ -1375,6 +1450,23 @@
 
 
 
+<!-- =========================
+     EMAILJS
+========================== -->
+
+<script
+    type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+
+
+<!-- =========================
+     EMPLOYMENT JAVASCRIPT
+========================== -->
+
 <script src="employment.js"></script>
 
-</body></html>
+
+</body>
+
+</html>
