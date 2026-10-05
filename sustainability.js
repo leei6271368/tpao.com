@@ -1,4 +1,3 @@
-```javascript
 // =================================
 // TPAO SUSTAINABILITY JAVASCRIPT
 // =================================
@@ -11,15 +10,23 @@
 const menuButton =
     document.getElementById("menuButton");
 
+
+// Your navigation uses:
+// class="nav-links"
+// instead of:
+// id="navLinks"
+
 const navLinks =
-    document.getElementById("navLinks");
+    document.querySelector(".nav-links");
 
 
 if (menuButton && navLinks) {
 
     menuButton.addEventListener(
         "click",
-        function () {
+        function (event) {
+
+            event.stopPropagation();
 
             navLinks.classList.toggle("show");
 
@@ -29,27 +36,57 @@ if (menuButton && navLinks) {
 }
 
 
-// Close mobile menu
-// after clicking a link
+// =================================
+// CLOSE MOBILE MENU
+// AFTER CLICKING A LINK
+// =================================
 
-const navigationLinks =
-    document.querySelectorAll(
-        ".nav-links a"
-    );
+if (navLinks) {
+
+    const navigationLinks =
+        navLinks.querySelectorAll("a");
 
 
-navigationLinks.forEach(function (link) {
+    navigationLinks.forEach(
+        function (link) {
 
-    link.addEventListener(
-        "click",
-        function () {
+            link.addEventListener(
+                "click",
+                function () {
 
-            navLinks.classList.remove("show");
+                    navLinks.classList.remove("show");
+
+                }
+            );
 
         }
     );
 
-});
+}
+
+
+// =================================
+// CLOSE MOBILE MENU
+// WHEN CLICKING OUTSIDE
+// =================================
+
+document.addEventListener(
+    "click",
+    function (event) {
+
+        if (
+            navLinks &&
+            menuButton &&
+            !navLinks.contains(event.target) &&
+            !menuButton.contains(event.target)
+        ) {
+
+            navLinks.classList.remove("show");
+
+        }
+
+    }
+);
 
 
 
@@ -67,50 +104,69 @@ const revealElements =
     );
 
 
-const observer =
-    new IntersectionObserver(
-        function (entries) {
+if ("IntersectionObserver" in window) {
 
-            entries.forEach(
-                function (entry) {
+    const observer =
+        new IntersectionObserver(
+            function (entries) {
 
-                    if (
-                        entry.isIntersecting
-                    ) {
+                entries.forEach(
+                    function (entry) {
 
-                        entry.target.classList.add(
-                            "visible"
-                        );
+                        if (
+                            entry.isIntersecting
+                        ) {
 
-                        observer.unobserve(
-                            entry.target
-                        );
+                            entry.target.classList.add(
+                                "visible"
+                            );
+
+                            observer.unobserve(
+                                entry.target
+                            );
+
+                        }
 
                     }
+                );
 
-                }
+            },
+            {
+                threshold: 0.15
+            }
+        );
+
+
+    revealElements.forEach(
+        function (element) {
+
+            element.classList.add(
+                "reveal"
             );
 
-        },
-        {
-            threshold: 0.15
+            observer.observe(
+                element
+            );
+
         }
     );
 
+} else {
 
-revealElements.forEach(
-    function (element) {
+    // Fallback for browsers
+    // without IntersectionObserver
 
-        element.classList.add(
-            "reveal"
-        );
+    revealElements.forEach(
+        function (element) {
 
-        observer.observe(
-            element
-        );
+            element.classList.add(
+                "visible"
+            );
 
-    }
-);
+        }
+    );
+
+}
 
 
 
@@ -121,4 +177,3 @@ revealElements.forEach(
 console.log(
     "TPAO Sustainability page loaded successfully."
 );
-```
