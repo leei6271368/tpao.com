@@ -1,16 +1,24 @@
-```javascript
 // =================================
 // TPAO OPERATIONS PAGE JAVASCRIPT
 // =================================
 
 
-// Mobile navigation
+// =================================
+// MOBILE NAVIGATION
+// =================================
+
 const menuButton = document.getElementById("menuButton");
-const navLinks = document.getElementById("navLinks");
+
+// Your HTML uses class="nav-links",
+// so we select it using the class.
+const navLinks = document.querySelector(".nav-links");
+
 
 if (menuButton && navLinks) {
 
-    menuButton.addEventListener("click", function () {
+    menuButton.addEventListener("click", function (event) {
+
+        event.stopPropagation();
 
         navLinks.classList.toggle("show");
 
@@ -19,19 +27,47 @@ if (menuButton && navLinks) {
 }
 
 
-// Close mobile navigation after
-// clicking a navigation link
+// =================================
+// CLOSE MOBILE NAVIGATION
+// AFTER CLICKING A LINK
+// =================================
 
-const navigationLinks =
-    document.querySelectorAll(".nav-links a");
+if (navLinks) {
 
-navigationLinks.forEach(function(link) {
+    const navigationLinks =
+        navLinks.querySelectorAll("a");
 
-    link.addEventListener("click", function() {
+
+    navigationLinks.forEach(function (link) {
+
+        link.addEventListener("click", function () {
+
+            navLinks.classList.remove("show");
+
+        });
+
+    });
+
+}
+
+
+// =================================
+// CLOSE MOBILE NAVIGATION
+// WHEN CLICKING OUTSIDE
+// =================================
+
+document.addEventListener("click", function (event) {
+
+    if (
+        navLinks &&
+        menuButton &&
+        !navLinks.contains(event.target) &&
+        !menuButton.contains(event.target)
+    ) {
 
         navLinks.classList.remove("show");
 
-    });
+    }
 
 });
 
@@ -46,35 +82,49 @@ const revealElements =
     );
 
 
-const observer = new IntersectionObserver(
-    function(entries) {
+if ("IntersectionObserver" in window) {
 
-        entries.forEach(function(entry) {
+    const observer = new IntersectionObserver(
+        function (entries) {
 
-            if (entry.isIntersecting) {
+            entries.forEach(function (entry) {
 
-                entry.target.classList.add("visible");
+                if (entry.isIntersecting) {
 
-                observer.unobserve(entry.target);
+                    entry.target.classList.add("visible");
 
-            }
+                    observer.unobserve(entry.target);
 
-        });
+                }
 
-    },
-    {
-        threshold: 0.15
-    }
-);
+            });
+
+        },
+        {
+            threshold: 0.15
+        }
+    );
 
 
-revealElements.forEach(function(element) {
+    revealElements.forEach(function (element) {
 
-    element.classList.add("reveal");
+        element.classList.add("reveal");
 
-    observer.observe(element);
+        observer.observe(element);
 
-});
+    });
+
+} else {
+
+    // Fallback for older browsers
+
+    revealElements.forEach(function (element) {
+
+        element.classList.add("visible");
+
+    });
+
+}
 
 
 // =================================
@@ -84,4 +134,3 @@ revealElements.forEach(function(element) {
 console.log(
     "TPAO Operations page loaded successfully."
 );
-```
