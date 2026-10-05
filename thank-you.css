@@ -1,0 +1,411 @@
+/* ============================
+   TPAO APPLICATION THANK YOU
+   ============================ */
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+
+body {
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    background: #07111f;
+
+    color: white;
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+
+
+/* ============================
+   NAVIGATION
+   ============================ */
+
+.navbar {
+
+    height: 80px;
+
+    padding: 0 8%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    background: #07111f;
+
+    border-bottom:
+        1px solid rgba(255,255,255,0.08);
+}
+
+
+.logo {
+
+    font-size: 30px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    color: white;
+}
+
+
+.nav-home {
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    transition: 0.3s;
+}
+
+
+.nav-home:hover {
+
+    color: #d9a441;
+
+}
+
+
+
+/* ============================
+   MAIN SECTION
+   ============================ */
+
+.thank-you-section {
+
+    flex: 1;
+
+    min-height:
+        calc(100vh - 80px);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 60px 20px;
+
+    background:
+
+        linear-gradient(
+            rgba(3, 12, 24, 0.92),
+            rgba(7, 17, 31, 0.96)
+        );
+}
+
+
+
+/* ============================
+   THANK YOU CARD
+   ============================ */
+
+.thank-you-card {
+
+    width: 100%;
+
+    max-width: 650px;
+
+    padding: 60px 45px;
+
+    text-align: center;
+
+    background: #ffffff;
+
+    color: #172033;
+
+    border-top:
+        5px solid #d9a441;
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.35);
+
+}
+
+
+
+/* ============================
+   SUCCESS ICON
+   ============================ */
+
+.success-icon {
+
+    width: 75px;
+
+    height: 75px;
+
+    margin:
+        0 auto 30px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #d9a441;
+
+    color: #07111f;
+
+    font-size: 38px;
+
+    font-weight: bold;
+
+}
+
+
+
+/* ============================
+   LABEL
+   ============================ */
+
+.thank-you-label {
+
+    display: block;
+
+    margin-bottom: 15px;
+
+    color: #d9a441;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    letter-spacing: 3px;
+
+}
+
+
+
+/* ============================
+   HEADING
+   ============================ */
+
+h1 {
+
+    font-size:
+        clamp(36px, 6vw, 55px);
+
+    line-height: 1.1;
+
+    margin-bottom: 25px;
+
+    color: #07111f;
+
+}
+
+
+
+/* ============================
+   TEXT
+   ============================ */
+
+.thank-you-card p {
+
+    max-width: 520px;
+
+    margin:
+        0 auto 18px;
+
+    color: #596574;
+
+    font-size: 17px;
+
+    line-height: 1.7;
+
+}
+
+
+.application-note {
+
+    margin-top: 25px !important;
+
+    font-size: 14px !important;
+
+    color: #7a8490 !important;
+
+}
+
+
+
+/* ============================
+   BUTTONS
+   ============================ */
+
+.buttons {
+
+    margin-top: 35px;
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+
+}
+
+
+.button {
+
+    display: inline-block;
+
+    padding: 15px 28px;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+
+}
+
+
+.primary-button {
+
+    background: #d9a441;
+
+    color: #07111f;
+
+}
+
+
+.primary-button:hover {
+
+    background: #07111f;
+
+    color: white;
+
+}
+
+
+.secondary-button {
+
+    border: 1px solid #07111f;
+
+    color: #07111f;
+
+    background: white;
+
+}
+
+
+.secondary-button:hover {
+
+    background: #07111f;
+
+    color: white;
+
+}
+
+
+
+/* ============================
+   FOOTER
+   ============================ */
+
+footer {
+
+    padding: 25px 20px;
+
+    text-align: center;
+
+    background: #030a12;
+
+    color: #8e99a6;
+
+    font-size: 13px;
+
+}
+
+
+
+/* ============================
+   MOBILE
+   ============================ */
+
+@media (max-width: 600px) {
+
+    .navbar {
+
+        padding: 0 5%;
+
+    }
+
+
+    .logo {
+
+        font-size: 25px;
+
+    }
+
+
+    .thank-you-section {
+
+        padding:
+            40px 15px;
+
+    }
+
+
+    .thank-you-card {
+
+        padding:
+            45px 25px;
+
+    }
+
+
+    h1 {
+
+        font-size: 38px;
+
+    }
+
+
+    .thank-you-card p {
+
+        font-size: 16px;
+
+    }
+
+
+    .buttons {
+
+        flex-direction: column;
+
+    }
+
+
+    .button {
+
+        width: 100%;
+
+    }
+
+}
