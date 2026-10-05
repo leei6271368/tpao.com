@@ -11,20 +11,33 @@ const menuButton = document.getElementById("menuButton");
 const navLinks = document.getElementById("navLinks");
 
 if (menuButton && navLinks) {
+
     menuButton.addEventListener("click", function () {
+
         navLinks.classList.toggle("show");
+
     });
+
 }
 
 
-const navigationLinks = document.querySelectorAll(".nav-links a");
+// Close mobile menu when a navigation link is clicked
+
+const navigationLinks =
+    document.querySelectorAll(".nav-links a");
 
 navigationLinks.forEach(function (link) {
+
     link.addEventListener("click", function () {
+
         if (navLinks) {
+
             navLinks.classList.remove("show");
+
         }
+
     });
+
 });
 
 
@@ -32,25 +45,39 @@ navigationLinks.forEach(function (link) {
 // APPLY BUTTONS
 // =================================
 
-const applyButtons = document.querySelectorAll(".apply-button");
-const positionInput = document.getElementById("position");
+const applyButtons =
+    document.querySelectorAll(".apply-button");
+
+const positionInput =
+    document.getElementById("position");
+
 
 applyButtons.forEach(function (button) {
 
     button.addEventListener("click", function () {
 
-        const job = button.getAttribute("data-job");
+        const job =
+            button.getAttribute("data-job");
+
 
         if (positionInput) {
+
             positionInput.value = job;
+
         }
 
-        const application = document.querySelector(".application");
+
+        const application =
+            document.querySelector(".application");
+
 
         if (application) {
+
             application.scrollIntoView({
-                behavior: "smooth"
+                behavior: "smooth",
+                block: "start"
             });
+
         }
 
     });
@@ -62,17 +89,22 @@ applyButtons.forEach(function (button) {
 // CV FILE NAME DISPLAY
 // =================================
 
-const cvInput = document.getElementById("cv");
-const cvFileName = document.getElementById("cvFileName");
+const cvInput =
+    document.getElementById("cv");
 
-if (cvInput) {
+const cvFileName =
+    document.getElementById("cvFileName");
+
+
+if (cvInput && cvFileName) {
 
     cvInput.addEventListener("change", function () {
 
         if (cvInput.files.length > 0) {
 
             cvFileName.textContent =
-                "Selected CV: " + cvInput.files[0].name;
+                "Selected CV: " +
+                cvInput.files[0].name;
 
         } else {
 
@@ -99,91 +131,139 @@ const formMessage =
 
 if (employmentForm) {
 
-    employmentForm.addEventListener("submit", function (event) {
+    employmentForm.addEventListener(
+        "submit",
+        function (event) {
 
-        const cv = document.getElementById("cv");
+            const cv =
+                document.getElementById("cv");
 
-        if (!cv || cv.files.length === 0) {
 
-            event.preventDefault();
+            // -----------------------------
+            // CHECK CV
+            // -----------------------------
 
-            if (formMessage) {
-                formMessage.textContent =
-                    "Please upload your CV before submitting.";
+            if (!cv || cv.files.length === 0) {
 
-                formMessage.style.color =
-                    "#c0392b";
+                event.preventDefault();
+
+                if (formMessage) {
+
+                    formMessage.textContent =
+                        "Please upload your CV before submitting.";
+
+                    formMessage.style.color =
+                        "#c0392b";
+
+                }
+
+                return;
+
             }
 
-            return;
-        }
+
+            // -----------------------------
+            // GET SELECTED FILE
+            // -----------------------------
+
+            const selectedFile =
+                cv.files[0];
 
 
-        const selectedFile = cv.files[0];
+            // -----------------------------
+            // ALLOWED FILE TYPES
+            // -----------------------------
+
+            const allowedTypes = [
+                "application/pdf",
+                "image/jpeg",
+                "image/png"
+            ];
 
 
-        const allowedTypes = [
-            "application/pdf",
-            "image/jpeg",
-            "image/png"
-        ];
+            if (
+                !allowedTypes.includes(
+                    selectedFile.type
+                )
+            ) {
 
+                event.preventDefault();
 
-        if (!allowedTypes.includes(selectedFile.type)) {
+                if (formMessage) {
 
-            event.preventDefault();
+                    formMessage.textContent =
+                        "Please upload your CV as PDF, JPG, or PNG.";
 
-            if (formMessage) {
-                formMessage.textContent =
-                    "Please upload your CV as PDF, JPG, or PNG.";
+                    formMessage.style.color =
+                        "#c0392b";
 
-                formMessage.style.color =
-                    "#c0392b";
+                }
+
+                return;
+
             }
 
-            return;
-        }
+
+            // -----------------------------
+            // MAXIMUM FILE SIZE
+            // -----------------------------
+
+            const maximumSize =
+                5 * 1024 * 1024;
 
 
-        const maximumSize =
-            5 * 1024 * 1024;
+            if (selectedFile.size > maximumSize) {
 
+                event.preventDefault();
 
-        if (selectedFile.size > maximumSize) {
+                if (formMessage) {
 
-            event.preventDefault();
+                    formMessage.textContent =
+                        "Your CV must be 5 MB or smaller.";
 
-            if (formMessage) {
-                formMessage.textContent =
-                    "Your CV must be 5 MB or smaller.";
+                    formMessage.style.color =
+                        "#c0392b";
 
-                formMessage.style.color =
-                    "#c0392b";
+                }
+
+                return;
+
             }
 
-            return;
+
+            // -----------------------------
+            // VALID FORM
+            // -----------------------------
+            //
+            // IMPORTANT:
+            // We DO NOT use preventDefault()
+            // here.
+            //
+            // This allows the browser to send
+            // the form normally to FormSubmit.
+            //
+            // FormSubmit will then redirect the
+            // applicant to thank-you.html using
+            // the _redirect field in employment.html.
+            // -----------------------------
+
+            const submitButton =
+                employmentForm.querySelector(
+                    'button[type="submit"]'
+                );
+
+
+            if (submitButton) {
+
+                submitButton.disabled = true;
+
+                submitButton.textContent =
+                    "Submitting...";
+
+            }
+
         }
-
-
-        // Let the browser submit the form
-        // directly to FormSubmit.
-
-        const submitButton =
-            employmentForm.querySelector(
-                'button[type="submit"]'
-            );
-
-
-        if (submitButton) {
-
-            submitButton.disabled = true;
-
-            submitButton.textContent =
-                "Submitting...";
-
-        }
-
-    });
+    );
 
 }
 
@@ -204,44 +284,62 @@ const revealElements =
     );
 
 
-const observer =
-    new IntersectionObserver(
-        function (entries) {
+if ("IntersectionObserver" in window) {
 
-            entries.forEach(
-                function (entry) {
+    const observer =
+        new IntersectionObserver(
+            function (entries) {
 
-                    if (entry.isIntersecting) {
+                entries.forEach(
+                    function (entry) {
 
-                        entry.target.classList.add(
-                            "visible"
-                        );
+                        if (entry.isIntersecting) {
 
-                        observer.unobserve(
-                            entry.target
-                        );
+                            entry.target.classList.add(
+                                "visible"
+                            );
+
+                            observer.unobserve(
+                                entry.target
+                            );
+
+                        }
 
                     }
+                );
 
-                }
-            );
+            },
+            {
+                threshold: 0.15
+            }
+        );
 
-        },
-        {
-            threshold: 0.15
+
+    revealElements.forEach(
+        function (element) {
+
+            element.classList.add("reveal");
+
+            observer.observe(element);
+
         }
     );
 
 
-revealElements.forEach(
-    function (element) {
+} else {
 
-        element.classList.add("reveal");
+    // Fallback for browsers that do not
+    // support IntersectionObserver.
 
-        observer.observe(element);
+    revealElements.forEach(
+        function (element) {
 
-    }
-);
+            element.classList.add("visible");
+
+        }
+    );
+
+}
 
 
 // =================================
