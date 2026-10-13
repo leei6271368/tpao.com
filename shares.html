@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TPAO Shares | Shareholder Portal</title>
+
+    <meta name="description"
+          content="Explore the TPAO shares information page, calculate illustrative investment values, and review shareholder information.">
+
+    <link rel="stylesheet" href="shares.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<header class="navbar">
+    <div class="brand">
+        <div class="logo">TP</div>
+
+        <div>
+            <h2>TPAO</h2>
+            <p>SHAREHOLDER PORTAL</p>
+        </div>
+    </div>
+
+    <button class="menu-toggle" id="menuToggle"
+            aria-label="Open navigation"
+            aria-expanded="false">
+        ☰
+    </button>
+
+    <nav id="navMenu">
+        <a href="#overview">Overview</a>
+        <a href="#shareholders">Shareholders</a>
+        <a href="#growth">Growth</a>
+        <a href="#calculator">Calculator</a>
+    </nav>
+</header>
+
+<main>
+
+    <!-- HERO SECTION -->
+
+    <section class="hero" id="overview">
+
+        <div class="hero-content">
+
+            <span class="badge">SHARE INFORMATION PORTAL</span>
+
+            <h1>TPAO Shares</h1>
+
+            <h2>Own a Part of Tomorrow's Energy Future</h2>
+
+            <p>
+                Explore share information, understand how investments
+                work, and calculate hypothetical investment outcomes.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="#calculator" class="btn btn-red">
+                    Calculate Investment
+                </a>
+
+                <a href="#growth" class="btn btn-outline">
+                    View Growth Model
+                </a>
+            </div>
+
+        </div>
+
+        <div class="price-card">
+
+            <p>Illustrative Price Per Share</p>
+
+            <h2>$1.00</h2>
+
+            <span>USD / SHARE</span>
+
+            <hr>
+
+            <p class="price-note">
+                Example price only. This is not a verified TPAO
+                share offering or live market quotation.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- NOTICE -->
+
+    <section class="notice">
+        <strong>Investment notice:</strong>
+
+        This is an informational demonstration. It does not establish
+        ownership in TPAO or provide a facility to buy actual shares.
+        Shareholder figures and growth projections are illustrative.
+    </section>
+
+
+    <!-- SUMMARY CARDS -->
+
+    <section class="summary-grid">
+
+        <div class="summary-card">
+            <span>Example Share Price</span>
+            <h3>$1.00</h3>
+            <p>Illustrative starting price</p>
+        </div>
+
+        <div class="summary-card">
+            <span>Minimum Example Investment</span>
+            <h3>$1.00</h3>
+            <p>One illustrative share</p>
+        </div>
+
+        <div class="summary-card">
+            <span>Profit Guarantee</span>
+            <h3>No</h3>
+            <p>Returns can be negative</p>
+        </div>
+
+        <div class="summary-card">
+            <span>Dividend Status</span>
+            <h3>Unconfirmed</h3>
+            <p>No dividend is promised</p>
+        </div>
+
+    </section>
+
+
+    <!-- SHAREHOLDERS -->
+
+    <section class="section" id="shareholders">
+
+        <div class="section-heading">
+            <span class="eyebrow">OWNERSHIP INFORMATION</span>
+
+            <h2>Shareholder Register</h2>
+
+            <p>
+                Demonstration records for showing how a shareholder
+                list could appear on the website.
+            </p>
+        </div>
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Shareholder</th>
+                        <th>Shares Owned</th>
+                        <th>Example Ownership</th>
+                    </tr>
+                </thead>
+
+                <tbody id="shareholderTable">
+
+                    <tr>
+                        <td>1</td>
+                        <td>Example Shareholder A</td>
+                        <td>1,000,000</td>
+                        <td>40%</td>
+                    </tr>
+
+                    <tr>
+                        <td>2</td>
+                        <td>Example Shareholder B</td>
+                        <td>750,000</td>
+                        <td>30%</td>
+                    </tr>
+
+                    <tr>
+                        <td>3</td>
+                        <td>Example Shareholder C</td>
+                        <td>500,000</td>
+                        <td>20%</td>
+                    </tr>
+
+                    <tr>
+                        <td>4</td>
+                        <td>Example Shareholder D</td>
+                        <td>250,000</td>
+                        <td>10%</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <p class="table-note">
+            These names, share quantities, and ownership percentages
+            are fictional examples and do not represent TPAO's actual
+            shareholder register.
+        </p>
+
+    </section>
+
+
+    <!-- GROWTH -->
+
+    <section class="section growth-section" id="growth">
+
+        <div class="section-heading">
+            <span class="eyebrow">ILLUSTRATIVE SCENARIO</span>
+
+            <h2>How Share Value Could Change</h2>
+
+            <p>
+                The example below shows hypothetical share prices.
+                Actual share prices may increase, remain unchanged,
+                or decrease.
+            </p>
+        </div>
+
+        <div class="chart-card">
+
+            <canvas id="growthChart"></canvas>
+
+        </div>
+
+        <div class="growth-grid">
+
+            <div class="growth-card">
+                <h3>Business Performance</h3>
+
+                <p>
+                    Revenue, operating costs, production levels,
+                    and financial results can influence a company's
+                    value.
+                </p>
+            </div>
+
+            <div class="growth-card">
+                <h3>Market Conditions</h3>
+
+                <p>
+                    Energy prices, interest rates, regulations,
+                    and investor demand can affect share prices.
+                </p>
+            </div>
+
+            <div class="growth-card">
+                <h3>Dividends</h3>
+
+                <p>
+                    A company may distribute profits to eligible
+                    shareholders if dividends are declared.
+                    Dividends are not guaranteed.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CALCULATOR -->
+
+    <section class="section calculator-section" id="calculator">
+
+        <div class="section-heading">
+
+            <span class="eyebrow">INVESTMENT TOOL</span>
+
+            <h2>Share Investment Calculator</h2>
+
+            <p>
+                Calculate hypothetical outcomes using your own
+                investment amount and a possible future share price.
+            </p>
+
+        </div>
+
+        <div class="calculator">
+
+            <div class="form-group">
+
+                <label for="investment">
+                    Investment Amount (USD)
+                </label>
+
+                <input
+                    type="number"
+                    id="investment"
+                    min="1"
+                    step="0.01"
+                    value="100"
+                    placeholder="Enter amount"
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="buyPrice">
+                    Example Purchase Price Per Share ($)
+                </label>
+
+                <input
+                    type="number"
+                    id="buyPrice"
+                    min="0.01"
+                    step="0.01"
+                    value="1.00"
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="futurePrice">
+                    Hypothetical Future Price Per Share ($)
+                </label>
+
+                <input
+                    type="number"
+                    id="futurePrice"
+                    min="0"
+                    step="0.01"
+                    value="1.50"
+                >
+
+            </div>
+
+            <button class="btn btn-red calculate-button"
+                    id="calculateButton">
+                Calculate Result
+            </button>
+
+            <div class="results">
+
+                <div class="result-box">
+                    <span>Whole Shares Purchased</span>
+                    <h3 id="sharesOwned">100</h3>
+                </div>
+
+                <div class="result-box">
+                    <span>Amount Invested</span>
+                    <h3 id="amountInvested">$100.00</h3>
+                </div>
+
+                <div class="result-box">
+                    <span>Hypothetical Future Value</span>
+                    <h3 id="futureValue">$150.00</h3>
+                </div>
+
+                <div class="result-box highlight">
+                    <span>Hypothetical Profit / Loss</span>
+                    <h3 id="profitLoss">$50.00</h3>
+                    <p id="profitPercentage">+50.00%</p>
+                </div>
+
+            </div>
+
+            <p class="calculator-note">
+                This calculator excludes transaction fees, taxes,
+                currency conversion costs, dividends, and other
+                expenses. Results are hypothetical and are not
+                a forecast or promise of investment returns.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- INVESTMENT RISKS -->
+
+    <section class="section risk-section">
+
+        <div class="section-heading">
+
+            <span class="eyebrow">IMPORTANT INFORMATION</span>
+
+            <h2>Understand the Risks</h2>
+
+        </div>
+
+        <div class="risk-grid">
+
+            <div class="risk-card">
+                <h3>Price Risk</h3>
+                <p>
+                    You may sell shares for less than you paid
+                    and lose some or all of your investment.
+                </p>
+            </div>
+
+            <div class="risk-card">
+                <h3>Liquidity Risk</h3>
+                <p>
+                    You may not be able to sell shares quickly
+                    or at your preferred price.
+                </p>
+            </div>
+
+            <div class="risk-card">
+                <h3>Company Verification</h3>
+                <p>
+                    Verify the issuer, share ownership rights,
+                    registration, and offering documents before
+                    sending money.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer class="footer">
+
+    <div class="brand footer-brand">
+
+        <div class="logo">TP</div>
+
+        <div>
+            <h2>TPAO</h2>
+            <p>SHARE INFORMATION PORTAL</p>
+        </div>
+
+    </div>
+
+    <p>
+        Informational demonstration only. Not an official TPAO
+        share offering or an assurance of investment returns.
+    </p>
+
+    <p>
+        &copy; <span id="currentYear"></span>
+        TPAO Shares Page. All rights reserved.
+    </p>
+
+</footer>
+
+<script src="shares.js"></script>
+
+</body>
+      </html>
