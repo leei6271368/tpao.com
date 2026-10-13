@@ -1,0 +1,660 @@
+/* =========================
+   GENERAL STYLES
+========================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --red: #d71920;
+    --dark-red: #a80f16;
+    --navy: #09243e;
+    --blue: #174c78;
+    --green: #16834a;
+    --white: #ffffff;
+    --light: #f4f7fa;
+    --border: #dce3eb;
+    --text: #263547;
+    --muted: #657487;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 85px;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--light);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+.navbar {
+    background: var(--white);
+    padding: 15px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 2px 12px #0000000d;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo {
+    background: var(--red);
+    color: white;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    font-size: 23px;
+    font-weight: 900;
+}
+
+.brand h2 {
+    color: var(--red);
+    font-size: 26px;
+    line-height: 1.2;
+}
+
+.brand p {
+    color: var(--navy);
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.navbar nav {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+
+.navbar nav a {
+    color: var(--navy);
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.navbar nav a:hover {
+    color: var(--red);
+}
+
+.menu-toggle {
+    display: none;
+    border: none;
+    background: var(--red);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 23px;
+    cursor: pointer;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    background: linear-gradient(
+        120deg,
+        #071d33,
+        #103f66,
+        #174c78
+    );
+
+    color: white;
+    padding: 75px 7%;
+    display: grid;
+    grid-template-columns: 1.5fr 0.8fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.badge,
+.eyebrow {
+    color: var(--red);
+    font-size: 12px;
+    letter-spacing: 2px;
+    font-weight: 800;
+}
+
+.hero .badge {
+    color: #ff9b9f;
+}
+
+.hero h1 {
+    font-size: clamp(38px, 6vw, 64px);
+    margin: 15px 0;
+    line-height: 1.1;
+}
+
+.hero-content h2 {
+    font-size: clamp(18px, 2.5vw, 25px);
+    margin-bottom: 15px;
+}
+
+.hero-content > p {
+    color: #e0eaf4;
+    max-width: 620px;
+    margin-bottom: 25px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: inline-block;
+    border: none;
+    border-radius: 7px;
+    padding: 13px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    text-align: center;
+    transition: 0.2s;
+}
+
+.btn-red {
+    background: var(--red);
+    color: white;
+}
+
+.btn-red:hover {
+    background: var(--dark-red);
+}
+
+.btn-outline {
+    border: 1px solid white;
+    color: white;
+    background: transparent;
+}
+
+.btn-outline:hover {
+    background: white;
+    color: var(--navy);
+}
+
+.price-card {
+    background: white;
+    color: var(--navy);
+    border-radius: 16px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 10px 35px #00000030;
+}
+
+.price-card > p:first-child {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.price-card h2 {
+    color: var(--red);
+    font-size: 48px;
+    margin: 8px 0;
+}
+
+.price-card > span {
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.price-card hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 20px 0;
+}
+
+.price-card .price-note {
+    font-size: 12px;
+    color: var(--muted);
+}
+
+
+/* =========================
+   NOTICE
+========================= */
+
+.notice {
+    background: #fff7e6;
+    border: 1px solid #f2d6a2;
+    color: #76521a;
+    margin: 25px 6%;
+    padding: 17px 20px;
+    border-radius: 8px;
+    font-size: 13px;
+}
+
+
+/* =========================
+   SUMMARY CARDS
+========================= */
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    padding: 10px 6% 35px;
+}
+
+.summary-card {
+    background: white;
+    border: 1px solid var(--border);
+    padding: 23px;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px #00000005;
+}
+
+.summary-card span {
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.summary-card h3 {
+    font-size: 27px;
+    color: var(--navy);
+    margin: 7px 0;
+}
+
+.summary-card p {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+
+/* =========================
+   SECTIONS
+========================= */
+
+.section {
+    padding: 45px 6%;
+}
+
+.section-heading {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 30px;
+}
+
+.section-heading h2 {
+    color: var(--navy);
+    font-size: clamp(25px, 4vw, 35px);
+    margin: 8px 0;
+}
+
+.section-heading p {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+
+/* =========================
+   SHAREHOLDER TABLE
+========================= */
+
+.table-wrapper {
+    overflow-x: auto;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 650px;
+}
+
+thead {
+    background: var(--red);
+    color: white;
+}
+
+th,
+td {
+    padding: 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+}
+
+tbody tr:nth-child(even) {
+    background: #f7f9fc;
+}
+
+tbody tr:hover {
+    background: #fff1f1;
+}
+
+.table-note {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 12px;
+}
+
+
+/* =========================
+   GROWTH CHART
+========================= */
+
+.growth-section {
+    background: white;
+}
+
+.chart-card {
+    max-width: 950px;
+    height: 350px;
+    padding: 20px;
+    margin: 0 auto 35px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: white;
+}
+
+.growth-grid,
+.risk-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.growth-card,
+.risk-card {
+    border: 1px solid var(--border);
+    background: var(--light);
+    border-radius: 10px;
+    padding: 23px;
+}
+
+.growth-card h3,
+.risk-card h3 {
+    color: var(--navy);
+    margin-bottom: 10px;
+    font-size: 17px;
+}
+
+.growth-card p,
+.risk-card p {
+    font-size: 13px;
+    color: var(--muted);
+}
+
+
+/* =========================
+   CALCULATOR
+========================= */
+
+.calculator-section {
+    background: #edf2f7;
+}
+
+.calculator {
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 30px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: 0 8px 30px #00000008;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 13px;
+    font-weight: bold;
+    color: var(--navy);
+}
+
+.form-group input {
+    width: 100%;
+    border: 1px solid #cbd5e1;
+    border-radius: 7px;
+    padding: 13px;
+    outline: none;
+    background: white;
+}
+
+.form-group input:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px #174c7815;
+}
+
+.calculate-button {
+    width: 100%;
+    margin: 5px 0 25px;
+}
+
+.results {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.result-box {
+    padding: 20px;
+    background: var(--light);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+}
+
+.result-box span {
+    display: block;
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.result-box h3 {
+    color: var(--navy);
+    margin-top: 8px;
+    font-size: 23px;
+    overflow-wrap: anywhere;
+}
+
+.result-box.highlight {
+    background: #e8f7ed;
+    border-color: #b5e2c2;
+}
+
+.result-box.highlight h3 {
+    color: var(--green);
+}
+
+.result-box.highlight p {
+    color: var(--green);
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.calculator-note {
+    margin-top: 20px;
+    font-size: 12px;
+    color: var(--muted);
+}
+
+
+/* =========================
+   RISKS
+========================= */
+
+.risk-section {
+    background: white;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+    background: var(--navy);
+    color: white;
+    padding: 40px 6%;
+    text-align: center;
+}
+
+.footer-brand {
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.footer-brand h2 {
+    color: white;
+}
+
+.footer-brand p {
+    color: #d8e5f0;
+}
+
+.footer > p {
+    color: #cbd9e5;
+    font-size: 12px;
+    margin: 10px auto;
+    max-width: 650px;
+}
+
+
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+
+@media (max-width: 900px) {
+
+    .hero {
+        grid-template-columns: 1fr;
+        padding: 55px 6%;
+    }
+
+    .price-card {
+        max-width: 500px;
+        width: 100%;
+    }
+
+    .summary-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .growth-grid,
+    .risk-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 650px) {
+
+    .navbar {
+        padding: 12px 5%;
+        flex-wrap: wrap;
+    }
+
+    .brand h2 {
+        font-size: 23px;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .navbar nav {
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        width: 100%;
+    }
+
+    .navbar nav.show {
+        display: flex;
+    }
+
+    .navbar nav a {
+        padding: 12px 5px;
+        border-top: 1px solid var(--border);
+    }
+
+    .hero {
+        padding: 45px 5%;
+    }
+
+    .hero h1 {
+        font-size: 42px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+    }
+
+    .summary-grid {
+        padding: 10px 5% 25px;
+        gap: 10px;
+    }
+
+    .summary-card {
+        padding: 16px;
+    }
+
+    .summary-card h3 {
+        font-size: 22px;
+    }
+
+    .section {
+        padding: 35px 5%;
+    }
+
+    .chart-card {
+        height: 280px;
+        padding: 10px;
+    }
+
+    .calculator {
+        padding: 20px;
+    }
+
+    .results {
+        grid-template-columns: 1fr;
+    }
+
+    .notice {
+        margin: 20px 5%;
+    }
+}
